@@ -3,8 +3,6 @@
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white&labelColor=20232A)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38B2AC?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#-licença)
-[![Deploy](https://img.shields.io/badge/Deploy-Vercel%20%7C%20Netlify-black)](#-deploy)
 
 Portfólio moderno e performático para apresentar projetos, habilidades e experiências. Construído com **React**, **Vite** e **TailwindCSS**.
 

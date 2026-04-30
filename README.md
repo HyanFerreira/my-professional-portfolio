@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./public/brand/logotipo_black.svg" alt="Logo Hyan Ferreira" width="280" />
+  <img src="./public/brand/logotipo.svg" alt="Logo Hyan Ferreira" width="280" />
 </p>
 
 # Hyan Ferreira | Portfólio profissional

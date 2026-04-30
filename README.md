@@ -1,37 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+  <img src="./public/brand/logotipo_black.svg" alt="Logo Hyan Ferreira" width="280" />
+</p>
 
-## Getting Started
+# Hyan Ferreira | Portfólio profissional
 
-First, run the development server:
+Portfólio profissional de Hyan Ferreira, desenvolvedor web full stack. O projeto apresenta serviços, habilidades, processo de trabalho, projetos em destaque e canais de contato em uma experiência moderna, responsiva e focada em conversão.
+
+## Sobre o projeto
+
+Este site foi desenvolvido para centralizar a presença profissional de Hyan Ferreira na web, comunicando atuação em desenvolvimento de sites, sistemas, dashboards, e-commerces, catálogos digitais e soluções sob medida.
+
+O conteúdo do portfólio destaca:
+
+- apresentação profissional e proposta de valor;
+- serviços oferecidos para negócios e profissionais;
+- tecnologias e habilidades técnicas;
+- projetos adaptados para portfólio;
+- processo de desenvolvimento;
+- links para contato, GitHub, LinkedIn e WhatsApp.
+
+## Tecnologias
+
+- [Next.js](https://nextjs.org/)
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Biome](https://biomejs.dev/)
+
+## Como rodar localmente
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+Inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts disponíveis
 
-## Learn More
+```bash
+npm run dev
+npm run build
+npm run start
+npm run lint
+npm run format
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Estrutura principal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+public/brand        Arquivos de marca e logos
+src/app             Rotas e páginas da aplicação
+src/components      Componentes reutilizáveis da interface
+src/data            Conteúdos estruturados do portfólio
+src/lib             Utilitários do projeto
+src/types           Tipagens TypeScript
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contato
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# my-professional-portfolio
+- Site: [hyanferreira.com.br](https://hyanferreira.com.br)
+- GitHub: [github.com/hyanferreira](https://github.com/hyanferreira)
+- LinkedIn: [linkedin.com/in/hyanferreira](https://www.linkedin.com/in/hyanferreira)
+- E-mail: [hyanferreira.dev@gmail.com](mailto:hyanferreira.dev@gmail.com)

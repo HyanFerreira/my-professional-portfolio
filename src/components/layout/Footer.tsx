@@ -12,12 +12,12 @@ export function Footer() {
         <div className="grid gap-8 lg:grid-cols-[1fr_1.4fr]">
           <div>
             <a
-              className="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+              className="brand-logo-link inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
               href="/#inicio"
             >
               <Image
                 alt={siteConfig.name}
-                className="h-10 w-auto"
+                className="brand-logo-image h-10 w-auto"
                 height={64}
                 src={siteConfig.logo}
                 width={303}

@@ -58,6 +58,63 @@ a {
   text-decoration: none;
 }
 
+.brand-logo-link {
+  isolation: isolate;
+  padding: 0.15rem 0.2rem;
+  position: relative;
+}
+
+.brand-logo-link::before {
+  background:
+    radial-gradient(
+      ellipse at 34% 50%,
+      color-mix(in srgb, var(--accent) 22%, transparent),
+      transparent 62%
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--accent) 10%, transparent),
+      color-mix(in srgb, var(--accent) 18%, transparent) 48%,
+      color-mix(in srgb, var(--accent) 8%, transparent)
+    );
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.24);
+  content: "";
+  filter: blur(11px);
+  inset: -0.35rem -0.55rem;
+  opacity: 0.52;
+  position: absolute;
+  z-index: -1;
+}
+
+.brand-logo-image {
+  filter: drop-shadow(
+      0 0 13px color-mix(in srgb, var(--accent) 30%, transparent)
+    )
+    drop-shadow(0 8px 18px rgba(0, 0, 0, 0.28));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .brand-logo-link::before,
+  .brand-logo-image {
+    transition:
+      box-shadow 180ms ease,
+      filter 180ms ease,
+      opacity 180ms ease;
+  }
+
+  .brand-logo-link:hover::before {
+    opacity: 0.68;
+  }
+
+  .brand-logo-link:hover .brand-logo-image {
+    filter: drop-shadow(
+        0 0 16px color-mix(in srgb, var(--accent) 38%, transparent)
+      )
+      drop-shadow(0 9px 20px rgba(0, 0, 0, 0.3));
+  }
+}
+
 button,
 a {
   -webkit-tap-highlight-color: transparent;

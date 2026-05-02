@@ -5,7 +5,7 @@ export const siteConfig = {
   studio: "HFStack",
   domain: "hyanferreira.com.br",
   url: "https://hyanferreira.com.br",
-  logo: "/brand/logotipo_full_white.svg",
+  logo: "/brand/logotipo.svg",
   title: "Hyan Ferreira | Desenvolvedor Web",
   description:
     "Desenvolvedor web full stack especializado em sites, sistemas, dashboards, e-commerces e soluções digitais sob medida.",

@@ -10,12 +10,12 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/85 backdrop-blur-xl">
       <Container className="relative flex min-h-16 items-center justify-between gap-5">
         <a
-          className="inline-flex shrink-0 items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+          className="brand-logo-link inline-flex shrink-0 items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           href="/#inicio"
         >
           <Image
             alt={siteConfig.name}
-            className="h-9 w-auto sm:h-10"
+            className="brand-logo-image h-9 w-auto sm:h-10"
             height={64}
             priority
             src={siteConfig.logo}

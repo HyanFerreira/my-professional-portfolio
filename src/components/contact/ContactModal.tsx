@@ -1,14 +1,53 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
 import { ContactForm } from "./ContactForm";
+
+const MODAL_ANIMATION_DURATION_MS = 220;
 
 export function ContactModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const titleId = useId();
   const descriptionId = useId();
+
+  const openModal = useCallback(() => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+
+    setIsClosing(false);
+    setIsOpen(true);
+  }, []);
+
+  const closeModal = useCallback(() => {
+    setIsClosing((currentIsClosing) => {
+      if (currentIsClosing || closeTimeoutRef.current) {
+        return currentIsClosing;
+      }
+
+      closeTimeoutRef.current = setTimeout(() => {
+        setIsOpen(false);
+        setIsClosing(false);
+        closeTimeoutRef.current = null;
+      }, MODAL_ANIMATION_DURATION_MS);
+
+      return true;
+    });
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) {
+        clearTimeout(closeTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!isOpen) {
@@ -22,7 +61,7 @@ export function ContactModal() {
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setIsOpen(false);
+        closeModal();
       }
     }
 
@@ -32,11 +71,11 @@ export function ContactModal() {
       document.body.style.overflow = originalOverflow;
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [isOpen]);
+  }, [closeModal, isOpen]);
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} size="lg" type="button">
+      <Button onClick={openModal} size="lg" type="button">
         Enviar e-mail
       </Button>
 
@@ -44,8 +83,11 @@ export function ContactModal() {
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 sm:px-6">
           <button
             aria-label="Fechar formulario"
-            className="absolute inset-0 h-full w-full bg-background/80 backdrop-blur-sm"
-            onClick={() => setIsOpen(false)}
+            className={cn(
+              "contact-modal-backdrop absolute inset-0 h-full w-full cursor-pointer bg-background/80 backdrop-blur-sm",
+              isClosing && "is-closing",
+            )}
+            onClick={closeModal}
             type="button"
           />
 
@@ -53,7 +95,10 @@ export function ContactModal() {
             aria-describedby={descriptionId}
             aria-labelledby={titleId}
             aria-modal="true"
-            className="relative max-h-[calc(100vh-3rem)] w-full max-w-2xl overflow-y-auto rounded-lg border border-border bg-surface-elevated p-6 shadow-[0_24px_80px_rgba(0,0,0,0.34)] sm:p-8"
+            className={cn(
+              "contact-modal-panel relative max-h-[calc(100vh-3rem)] w-full max-w-2xl overflow-y-auto rounded-lg border border-border bg-surface-elevated p-6 shadow-[0_24px_80px_rgba(0,0,0,0.34)] sm:p-8",
+              isClosing && "is-closing",
+            )}
             role="dialog"
           >
             <div className="mb-6 flex items-start justify-between gap-5">
@@ -77,8 +122,8 @@ export function ContactModal() {
 
               <button
                 aria-label="Fechar formulario"
-                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border bg-surface text-text-secondary transition hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                onClick={() => setIsOpen(false)}
+                className="inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-md border border-border bg-surface text-text-secondary transition hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                onClick={closeModal}
                 ref={closeButtonRef}
                 type="button"
               >
@@ -86,7 +131,7 @@ export function ContactModal() {
               </button>
             </div>
 
-            <ContactForm />
+            <ContactForm onCancel={closeModal} />
           </div>
         </div>
       ) : null}

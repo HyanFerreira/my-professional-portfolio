@@ -1,3 +1,4 @@
+import { ContactModal } from "@/components/contact/ContactModal";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { siteConfig } from "@/data/site";
@@ -30,9 +31,7 @@ export function ContactSection() {
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-              <Button href={`mailto:${siteConfig.email}`} size="lg">
-                Enviar e-mail
-              </Button>
+              <ContactModal />
               <Button
                 href={siteConfig.whatsapp}
                 rel="noreferrer"

@@ -2,12 +2,21 @@
 
 import { type FormEvent, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import {
+  Input,
+  Label,
+  Select,
+  type SelectOption,
+  Textarea,
+} from "@/components/ui/Form";
+import { services } from "@/data/services";
 import { cn } from "@/lib/utils";
 
 type FormState = {
   email: string;
   message: string;
   name: string;
+  otherSubject: string;
   subject: string;
 };
 
@@ -36,26 +45,31 @@ const initialFormState: FormState = {
   email: "",
   message: "",
   name: "",
+  otherSubject: "",
   subject: "",
 };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const otherSubjectValue = "Outro";
+const maxMessageLength = 500;
+const maxOtherSubjectLength = 200;
 
-const fieldClassName =
-  "w-full rounded-md border border-border bg-background px-4 py-3 text-sm text-text-primary outline-none transition placeholder:text-text-secondary/70 focus:border-accent focus:ring-2 focus:ring-accent/20 disabled:cursor-not-allowed disabled:opacity-60";
+const subjectOptions: SelectOption[] = [
+  "Aplicativo Mobile",
+  ...services.map((service) => service.title),
+  otherSubjectValue,
+].map((subjectOption) => ({
+  label: subjectOption,
+  value: subjectOption,
+}));
 
 const fieldErrorClassName = "mt-2 text-sm font-medium leading-5 text-red-500";
-
-const fieldLabelClassName =
-  "mb-2 block text-sm font-medium text-text-primary transition-colors";
-
-const fieldInvalidClassName =
-  "border-red-500 focus:border-red-500 focus:ring-red-500/20";
 
 function validateForm(form: FormState) {
   const errors: FieldErrors = {};
   const name = form.name.trim();
   const email = form.email.trim();
+  const otherSubject = form.otherSubject.trim();
   const subject = form.subject.trim();
   const message = form.message.trim();
 
@@ -68,17 +82,25 @@ function validateForm(form: FormState) {
   if (!email) {
     errors.email = "Informe seu e-mail.";
   } else if (!emailPattern.test(email)) {
-    errors.email = "Informe um e-mail válido.";
+    errors.email = "Informe um e-mail valido.";
   }
 
   if (!subject) {
     errors.subject = "Informe o assunto.";
+  } else if (subject === otherSubjectValue) {
+    if (!otherSubject) {
+      errors.otherSubject = "Especifique o assunto.";
+    } else if (otherSubject.length > maxOtherSubjectLength) {
+      errors.otherSubject = `O assunto deve ter no maximo ${maxOtherSubjectLength} caracteres.`;
+    }
   }
 
   if (!message) {
     errors.message = "Escreva sua mensagem.";
   } else if (message.length < 10) {
     errors.message = "Digite pelo menos 10 caracteres.";
+  } else if (message.length > maxMessageLength) {
+    errors.message = `A mensagem deve ter no maximo ${maxMessageLength} caracteres.`;
   }
 
   return errors;
@@ -95,20 +117,33 @@ export function ContactForm({ onCancel }: ContactFormProps) {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const messageTextareaRef = useRef<HTMLTextAreaElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
-  const subjectInputRef = useRef<HTMLInputElement>(null);
+  const otherSubjectInputRef = useRef<HTMLInputElement>(null);
+  const subjectSelectRef = useRef<HTMLButtonElement>(null);
 
   function updateField(field: keyof FormState, value: string) {
     setForm((currentForm) => ({
       ...currentForm,
       [field]: value,
+      ...(field === "subject" && value !== otherSubjectValue
+        ? { otherSubject: "" }
+        : {}),
     }));
 
     setFieldErrors((currentErrors) => {
-      if (!currentErrors[field]) {
+      const shouldClearOtherSubject =
+        field === "subject" && currentErrors.otherSubject;
+
+      if (!(currentErrors[field] || shouldClearOtherSubject)) {
         return currentErrors;
       }
 
-      const { [field]: _removedError, ...nextErrors } = currentErrors;
+      const nextErrors = { ...currentErrors };
+      delete nextErrors[field];
+
+      if (shouldClearOtherSubject) {
+        delete nextErrors.otherSubject;
+      }
+
       return nextErrors;
     });
   }
@@ -125,7 +160,12 @@ export function ContactForm({ onCancel }: ContactFormProps) {
     }
 
     if (errors.subject) {
-      subjectInputRef.current?.focus();
+      subjectSelectRef.current?.focus();
+      return;
+    }
+
+    if (errors.otherSubject) {
+      otherSubjectInputRef.current?.focus();
       return;
     }
 
@@ -157,7 +197,10 @@ export function ContactForm({ onCancel }: ContactFormProps) {
       email: form.email.trim(),
       message: form.message.trim(),
       name: form.name.trim(),
-      subject: form.subject.trim(),
+      subject:
+        form.subject === otherSubjectValue
+          ? form.otherSubject.trim()
+          : form.subject.trim(),
     };
 
     try {
@@ -200,31 +243,19 @@ export function ContactForm({ onCancel }: ContactFormProps) {
     <form className="space-y-4" noValidate onSubmit={handleSubmit}>
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label
-            className={cn(
-              fieldLabelClassName,
-              fieldErrors.name && "text-red-500",
-            )}
-            htmlFor="contact-name"
-          >
+          <Label htmlFor="contact-name" required>
             Nome
-            <span aria-hidden="true" className="ml-1 text-red-500">
-              *
-            </span>
-          </label>
-          <input
+          </Label>
+          <Input
             aria-describedby={
               fieldErrors.name ? "contact-name-error" : undefined
             }
             aria-invalid={fieldErrors.name ? "true" : "false"}
             aria-required="true"
             autoComplete="name"
-            className={cn(
-              fieldClassName,
-              fieldErrors.name && fieldInvalidClassName,
-            )}
             disabled={isSubmitting}
             id="contact-name"
+            invalid={Boolean(fieldErrors.name)}
             maxLength={120}
             name="name"
             onChange={(event) => updateField("name", event.target.value)}
@@ -241,31 +272,19 @@ export function ContactForm({ onCancel }: ContactFormProps) {
         </div>
 
         <div>
-          <label
-            className={cn(
-              fieldLabelClassName,
-              fieldErrors.email && "text-red-500",
-            )}
-            htmlFor="contact-email"
-          >
+          <Label htmlFor="contact-email" required>
             E-mail
-            <span aria-hidden="true" className="ml-1 text-red-500">
-              *
-            </span>
-          </label>
-          <input
+          </Label>
+          <Input
             aria-describedby={
               fieldErrors.email ? "contact-email-error" : undefined
             }
             aria-invalid={fieldErrors.email ? "true" : "false"}
             aria-required="true"
             autoComplete="email"
-            className={cn(
-              fieldClassName,
-              fieldErrors.email && fieldInvalidClassName,
-            )}
             disabled={isSubmitting}
             id="contact-email"
+            invalid={Boolean(fieldErrors.email)}
             maxLength={254}
             name="email"
             onChange={(event) => updateField("email", event.target.value)}
@@ -283,36 +302,23 @@ export function ContactForm({ onCancel }: ContactFormProps) {
       </div>
 
       <div>
-        <label
-          className={cn(
-            fieldLabelClassName,
-            fieldErrors.subject && "text-red-500",
-          )}
-          htmlFor="contact-subject"
-        >
+        <Label htmlFor="contact-subject" required>
           Assunto
-          <span aria-hidden="true" className="ml-1 text-red-500">
-            *
-          </span>
-        </label>
-        <input
+        </Label>
+        <Select
           aria-describedby={
             fieldErrors.subject ? "contact-subject-error" : undefined
           }
           aria-invalid={fieldErrors.subject ? "true" : "false"}
           aria-required="true"
-          className={cn(
-            fieldClassName,
-            fieldErrors.subject && fieldInvalidClassName,
-          )}
           disabled={isSubmitting}
           id="contact-subject"
-          maxLength={160}
+          invalid={Boolean(fieldErrors.subject)}
           name="subject"
-          onChange={(event) => updateField("subject", event.target.value)}
-          placeholder="Site, sistema, dashboard..."
-          ref={subjectInputRef}
-          type="text"
+          onValueChange={(value) => updateField("subject", value)}
+          options={subjectOptions}
+          placeholder="Selecione um servico"
+          ref={subjectSelectRef}
           value={form.subject}
         />
         {fieldErrors.subject ? (
@@ -322,44 +328,87 @@ export function ContactForm({ onCancel }: ContactFormProps) {
         ) : null}
       </div>
 
+      {form.subject === otherSubjectValue ? (
+        <div>
+          <Label htmlFor="contact-other-subject" required>
+            Especifique o assunto
+          </Label>
+          <Input
+            aria-describedby={
+              fieldErrors.otherSubject
+                ? "contact-other-subject-error contact-other-subject-count"
+                : "contact-other-subject-count"
+            }
+            aria-invalid={fieldErrors.otherSubject ? "true" : "false"}
+            aria-required="true"
+            disabled={isSubmitting}
+            id="contact-other-subject"
+            invalid={Boolean(fieldErrors.otherSubject)}
+            maxLength={maxOtherSubjectLength}
+            name="otherSubject"
+            onChange={(event) =>
+              updateField("otherSubject", event.target.value)
+            }
+            placeholder="Conte qual servico voce procura"
+            ref={otherSubjectInputRef}
+            type="text"
+            value={form.otherSubject}
+          />
+          <div className="mt-2 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+            {fieldErrors.otherSubject ? (
+              <p
+                className={fieldErrorClassName}
+                id="contact-other-subject-error"
+              >
+                {fieldErrors.otherSubject}
+              </p>
+            ) : null}
+            <p
+              className="text-xs leading-5 text-text-secondary sm:ml-auto"
+              id="contact-other-subject-count"
+            >
+              {form.otherSubject.length}/{maxOtherSubjectLength}
+            </p>
+          </div>
+        </div>
+      ) : null}
+
       <div>
-        <label
-          className={cn(
-            fieldLabelClassName,
-            fieldErrors.message && "text-red-500",
-          )}
-          htmlFor="contact-message"
-        >
+        <Label htmlFor="contact-message" required>
           Mensagem
-          <span aria-hidden="true" className="ml-1 text-red-500">
-            *
-          </span>
-        </label>
-        <textarea
+        </Label>
+        <Textarea
           aria-describedby={
-            fieldErrors.message ? "contact-message-error" : undefined
+            fieldErrors.message
+              ? "contact-message-error contact-message-count"
+              : "contact-message-count"
           }
           aria-invalid={fieldErrors.message ? "true" : "false"}
           aria-required="true"
-          className={cn(
-            fieldClassName,
-            "min-h-36 resize-y",
-            fieldErrors.message && fieldInvalidClassName,
-          )}
+          className="min-h-36 resize-y"
           disabled={isSubmitting}
           id="contact-message"
-          maxLength={4000}
+          invalid={Boolean(fieldErrors.message)}
+          maxLength={maxMessageLength}
           name="message"
           onChange={(event) => updateField("message", event.target.value)}
           placeholder="Conte brevemente sobre o projeto"
           ref={messageTextareaRef}
           value={form.message}
         />
-        {fieldErrors.message ? (
-          <p className={fieldErrorClassName} id="contact-message-error">
-            {fieldErrors.message}
+        <div className="mt-2 flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+          {fieldErrors.message ? (
+            <p className={fieldErrorClassName} id="contact-message-error">
+              {fieldErrors.message}
+            </p>
+          ) : null}
+          <p
+            className="text-xs leading-5 text-text-secondary sm:ml-auto"
+            id="contact-message-count"
+          >
+            {form.message.length}/{maxMessageLength}
           </p>
-        ) : null}
+        </div>
       </div>
 
       <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center sm:justify-between">

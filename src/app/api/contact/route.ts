@@ -20,14 +20,13 @@ const contactSchema = z
     subject: z
       .string()
       .trim()
-      .max(160, "O assunto deve ter no maximo 160 caracteres.")
-      .optional()
-      .default(""),
+      .min(1, "Informe o assunto.")
+      .max(200, "O assunto deve ter no maximo 200 caracteres."),
     message: z
       .string()
       .trim()
       .min(10, "A mensagem deve ter pelo menos 10 caracteres.")
-      .max(4000, "A mensagem deve ter no maximo 4000 caracteres."),
+      .max(500, "A mensagem deve ter no maximo 500 caracteres."),
   })
   .strict();
 

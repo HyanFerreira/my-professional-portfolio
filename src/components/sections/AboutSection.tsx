@@ -26,7 +26,6 @@ export function AboutSection() {
     <section className="py-16 sm:py-20" id="sobre">
       <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
         <SectionHeader
-          description="A marca principal é pessoal: Hyan Ferreira. HFStack aparece como laboratório técnico para organizar ideias, estudos e soluções."
           eyebrow="Sobre"
           title="Desenvolvimento com visão de produto e execução técnica"
         />

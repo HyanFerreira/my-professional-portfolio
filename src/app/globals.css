@@ -79,6 +79,60 @@ textarea:-webkit-autofill:focus {
   caret-color: var(--text-primary);
 }
 
+html,
+body {
+  scrollbar-color: color-mix(in srgb, var(--accent) 64%, var(--border))
+    color-mix(in srgb, var(--surface) 78%, transparent);
+  scrollbar-width: auto;
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  height: 1rem;
+  width: 1rem;
+}
+
+.form-select-listbox {
+  scrollbar-color: color-mix(in srgb, var(--accent) 64%, var(--border))
+    color-mix(in srgb, var(--surface) 78%, transparent);
+  scrollbar-width: thin;
+}
+
+.form-select-listbox::-webkit-scrollbar {
+  height: 0.65rem;
+  width: 0.65rem;
+}
+
+.form-select-listbox::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track {
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  border-radius: 999px;
+  margin-block: 0.35rem;
+}
+
+.form-select-listbox::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 82%, white 4%),
+    color-mix(in srgb, var(--accent-hover) 78%, var(--border))
+  );
+  border: 2px solid var(--surface-elevated);
+  border-radius: 999px;
+}
+
+.form-select-listbox::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover,
+html::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--accent) 92%, white 6%),
+    var(--accent-hover)
+  );
+}
+
 a {
   text-decoration: none;
 }

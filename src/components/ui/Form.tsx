@@ -1,5 +1,6 @@
 "use client";
 
+import { Check, ChevronDown } from "lucide-react";
 import {
   type ButtonHTMLAttributes,
   forwardRef,
@@ -96,6 +97,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     <textarea
       className={cn(
         fieldClassName,
+        "max-h-[300px]",
         invalid && invalidFieldClassName,
         className,
       )}
@@ -255,7 +257,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           aria-haspopup="listbox"
           className={cn(
             fieldClassName,
-            "flex items-center justify-between gap-3 text-left",
+            "flex cursor-pointer items-center justify-between gap-3 pr-3 text-left",
             invalid && invalidFieldClassName,
             !selectedOption && "text-text-secondary/70",
             className,
@@ -276,17 +278,17 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
           <span
             aria-hidden="true"
             className={cn(
-              "text-xs text-text-secondary transition-transform",
-              isOpen && "rotate-180",
+              "shrink-0 text-text-secondary transition",
+              isOpen && "rotate-180 text-accent",
             )}
           >
-            v
+            <ChevronDown className="size-4" strokeWidth={2.25} />
           </span>
         </button>
 
         {isOpen ? (
           <div
-            className="absolute z-50 mt-2 max-h-64 w-full overflow-y-auto rounded-md border border-border bg-surface-elevated py-1 shadow-[0_18px_48px_rgba(0,0,0,0.28)]"
+            className="form-select-listbox absolute z-50 mt-2 max-h-64 w-full overflow-y-auto rounded-md border border-border bg-surface-elevated p-1 shadow-[0_18px_48px_rgba(0,0,0,0.28)] ring-1 ring-white/5"
             id={listboxId}
             role="listbox"
           >
@@ -294,9 +296,9 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
               <button
                 aria-selected={option.value === value}
                 className={cn(
-                  "flex w-full cursor-pointer items-center px-4 py-2.5 text-left text-sm text-text-primary transition hover:bg-surface disabled:cursor-not-allowed disabled:opacity-50",
+                  "flex w-full cursor-pointer items-center gap-3 rounded-[5px] px-3 py-2.5 text-left text-sm text-text-primary transition hover:bg-surface disabled:cursor-not-allowed disabled:opacity-50",
                   index === activeIndex && "bg-surface",
-                  option.value === value && "text-accent",
+                  option.value === value && "bg-accent/10 text-accent",
                 )}
                 disabled={option.disabled}
                 id={`${listboxId}-option-${index}`}
@@ -306,7 +308,15 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                 role="option"
                 type="button"
               >
-                {option.label}
+                <span className="min-w-0 flex-1 truncate">{option.label}</span>
+                <Check
+                  aria-hidden="true"
+                  className={cn(
+                    "size-4 shrink-0 transition-opacity",
+                    option.value === value ? "opacity-100" : "opacity-0",
+                  )}
+                  strokeWidth={2.4}
+                />
               </button>
             ))}
           </div>

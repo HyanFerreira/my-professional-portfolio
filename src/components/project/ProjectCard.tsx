@@ -41,7 +41,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col mt-6">
+      <div className="flex flex-1 flex-col p-5">
         <Badge className="w-fit">{project.category}</Badge>
         <h3 className="mt-5 text-xl font-semibold text-text-primary">
           {project.title}

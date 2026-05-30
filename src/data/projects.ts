@@ -11,7 +11,6 @@ export const projects: Project[] = [
       "Next.js",
       "React",
       "TypeScript",
-      "Livewire",
       "Tailwind CSS",
     ],
     demoUrl: "https://scrollfolio.hyanferreira.com.br",

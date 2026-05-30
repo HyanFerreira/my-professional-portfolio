@@ -57,7 +57,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             Ver detalhes
           </Button>
           {project.demoUrl ? (
-            <Button href={project.demoUrl} size="sm" variant="secondary">
+            <Button href={project.demoUrl} size="sm" variant="secondary" target="_blank">
               Demo
             </Button>
           ) : null}

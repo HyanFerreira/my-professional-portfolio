@@ -2,24 +2,33 @@ import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
-    slug: "portal-institucional-educacional",
-    title: "Portal institucional educacional",
+    slug: "scrollfolio-template",
+    title: "Scrollfolio Template",
     description:
-      "Site institucional adaptado para uma organização educacional, com páginas informativas, navegação clara e apresentação de serviços.",
-    category: "Site institucional",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    demoUrl: "#",
+      "Template moderno de portfólio com navegação fluida, seções reutilizáveis e foco em apresentação profissional de projetos, serviços e informações pessoais.",
+    category: "Template de portfólio",
+    technologies: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Livewire",
+      "Tailwind CSS",
+    ],
+    demoUrl: "https://scrollfolio.hyanferreira.com.br",
     featured: true,
     summary:
-      "Uma experiência institucional com foco em comunicação objetiva, credibilidade e acesso rápido às principais informações.",
+      "Um template de portfólio moderno, responsivo e orientado à experiência visual, criado para apresentar projetos, habilidades, serviços e informações profissionais de forma clara, elegante e dinâmica.",
     challenge:
-      "Organizar conteúdos variados em uma estrutura simples de navegar, mantendo uma aparência profissional e responsiva.",
+      "Criar uma estrutura de portfólio que fosse visualmente marcante, fácil de navegar e simples de adaptar para diferentes perfis profissionais, mantendo boa organização de conteúdo e uma experiência fluida em dispositivos desktop e mobile.",
     solution:
-      "Criação de uma arquitetura de páginas enxuta, cards informativos e chamadas de contato visíveis sem comprometer a leitura.",
+      "Desenvolvimento de um template com arquitetura modular, componentes reutilizáveis, seções bem definidas e layout responsivo. A interface foi pensada para destacar projetos, tecnologias, chamadas de ação e informações profissionais sem sobrecarregar a leitura.",
     highlights: [
       "Layout responsivo para desktop e mobile",
-      "Estrutura preparada para crescimento de conteúdo",
-      "Identidade visual adaptada para portfólio",
+      "Estrutura modular e fácil de personalizar",
+      "Seções preparadas para projetos, habilidades e contato",
+      "Navegação fluida com foco em experiência visual",
+      "Design moderno com identidade visual escura e tecnológica",
+      "Base pronta para expansão e adaptação a novos portfólios",
     ],
   },
   {

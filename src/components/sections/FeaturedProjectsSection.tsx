@@ -30,8 +30,12 @@ export function FeaturedProjectsSection() {
         </p>
 
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          {featuredProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+          {featuredProjects.map((project, index) => (
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              revealDelay={index}
+            />
           ))}
         </div>
       </Container>

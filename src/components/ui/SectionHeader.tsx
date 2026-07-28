@@ -6,6 +6,7 @@ type SectionHeaderProps = {
   description?: string;
   align?: "left" | "center";
   className?: string;
+  reveal?: boolean;
 };
 
 export function SectionHeader({
@@ -13,6 +14,7 @@ export function SectionHeader({
   className,
   description,
   eyebrow,
+  reveal = true,
   title,
 }: SectionHeaderProps) {
   return (
@@ -22,6 +24,7 @@ export function SectionHeader({
         align === "center" && "mx-auto text-center",
         className,
       )}
+      data-reveal={reveal || undefined}
     >
       {eyebrow ? (
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-accent">

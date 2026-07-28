@@ -17,8 +17,12 @@ export function SkillsSection() {
         />
 
         <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {skillGroups.map((group) => (
-            <SkillGroup group={group} key={group.title} />
+          {skillGroups.map((group, index) => (
+            <SkillGroup
+              group={group}
+              key={group.title}
+              revealDelay={index}
+            />
           ))}
         </div>
       </Container>

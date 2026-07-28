@@ -17,10 +17,17 @@ export function Footer() {
             >
               <Image
                 alt={siteConfig.name}
-                className="brand-logo-image h-10 w-auto"
+                className="brand-logo-image-dark h-10 w-auto"
                 height={64}
                 src={siteConfig.logo}
                 width={303}
+              />
+              <Image
+                alt={siteConfig.name}
+                className="brand-logo-image-light h-10 w-auto"
+                height={119}
+                src={siteConfig.lightLogo}
+                width={560}
               />
             </a>
             <p className="mt-5 max-w-md leading-7 text-text-secondary">

@@ -29,7 +29,7 @@ type ButtonProps = ButtonLinkProps | ButtonElementProps;
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "border-accent bg-accent text-background shadow-[0_0_24px_rgba(0,229,255,0.18)] hover:border-accent-hover hover:bg-accent-hover",
+    "border-accent bg-accent text-background shadow-[var(--shadow-accent)] hover:border-accent-hover hover:bg-accent-hover",
   secondary:
     "border-border bg-surface text-text-primary hover:border-accent hover:text-accent",
   ghost:

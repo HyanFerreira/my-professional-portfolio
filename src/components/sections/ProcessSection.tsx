@@ -16,6 +16,8 @@ export function ProcessSection() {
           {processSteps.map((step, index) => (
             <li
               className="rounded-lg border border-border bg-surface p-5"
+              data-reveal
+              data-reveal-delay={index}
               key={step.title}
             >
               <span className="flex h-10 w-10 items-center justify-center rounded-md border border-accent/35 bg-accent/10 font-mono text-sm font-semibold text-accent">

@@ -18,6 +18,7 @@ export function ServicesSection() {
             <ServiceCard
               className={index === services.length - 1 ? "lg:col-start-2" : ""}
               key={service.title}
+              revealDelay={index % 3}
               service={service}
             />
           ))}

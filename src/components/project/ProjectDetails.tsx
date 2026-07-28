@@ -14,7 +14,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
   return (
     <article className="py-14 sm:py-20">
       <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-        <div>
+        <div data-reveal="left">
           <Badge>{project.category}</Badge>
           <h1 className="mt-5 text-balance text-4xl font-semibold text-text-primary sm:text-5xl">
             {project.title}
@@ -27,7 +27,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
           </p>
         </div>
 
-        <Card elevated className="p-0">
+        <Card elevated className="p-0" data-reveal="right" data-reveal-delay="1">
           <div className="relative h-64 overflow-hidden rounded-t-lg border-b border-border bg-[linear-gradient(135deg,#071426_0%,#101B2D_48%,#06323F_100%)]">
             {project.image ? (
               <Image
@@ -75,13 +75,13 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
       </div>
 
       <div className="mt-12 grid gap-6 md:grid-cols-2">
-        <Card>
+        <Card data-reveal>
           <h2 className="text-xl font-semibold text-text-primary">Desafio</h2>
           <p className="mt-4 leading-7 text-text-secondary">
             {project.challenge}
           </p>
         </Card>
-        <Card>
+        <Card data-reveal data-reveal-delay="1">
           <h2 className="text-xl font-semibold text-text-primary">Solução</h2>
           <p className="mt-4 leading-7 text-text-secondary">
             {project.solution}
@@ -89,7 +89,7 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
         </Card>
       </div>
 
-      <Card className="mt-6">
+      <Card className="mt-6" data-reveal>
         <h2 className="text-xl font-semibold text-text-primary">Destaques</h2>
         <ul className="mt-5 grid gap-3 sm:grid-cols-3">
           {project.highlights.map((highlight) => (

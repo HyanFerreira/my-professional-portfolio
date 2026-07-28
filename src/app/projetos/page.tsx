@@ -18,6 +18,7 @@ export default function ProjectsPage() {
         <SectionHeader
           description="Projetos, estudos de caso e versões adaptadas para portfólio com foco em arquitetura, experiência e execução técnica."
           eyebrow="Portfólio"
+          reveal={false}
           title="Projetos desenvolvidos"
         />
 
@@ -27,7 +28,7 @@ export default function ProjectsPage() {
 
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <ProjectCard key={project.slug} project={project} reveal={false} />
           ))}
         </div>
       </Container>

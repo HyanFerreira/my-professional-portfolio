@@ -288,7 +288,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
 
         {isOpen ? (
           <div
-            className="form-select-listbox absolute z-50 mt-2 max-h-64 w-full overflow-y-auto rounded-md border border-border bg-surface-elevated p-1 shadow-[0_18px_48px_rgba(0,0,0,0.28)] ring-1 ring-white/5"
+            className="form-select-listbox absolute z-50 mt-2 max-h-64 w-full overflow-y-auto rounded-md border border-border bg-surface-elevated p-1 shadow-[var(--shadow-popover)] ring-1 ring-white/5"
             id={listboxId}
             role="listbox"
           >

@@ -7,7 +7,10 @@ export function ContactSection() {
   return (
     <section className="py-16 sm:py-20" id="contato">
       <Container>
-        <div className="rounded-lg border border-border bg-surface-elevated p-6 shadow-[0_24px_80px_rgba(0,0,0,0.24)] sm:p-8 lg:p-10">
+        <div
+          className="rounded-lg border border-border bg-surface-elevated p-6 shadow-[var(--shadow-feature)] sm:p-8 lg:p-10"
+          data-reveal
+        >
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">

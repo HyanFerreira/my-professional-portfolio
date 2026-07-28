@@ -60,7 +60,7 @@ export function HeroSection() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-border bg-surface p-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)]">
+        <div className="rounded-lg border border-border bg-surface p-5 shadow-[var(--shadow-hero)]">
           <div className="rounded-md border border-border bg-background">
             <div className="flex items-center gap-2 border-b border-border px-4 py-3">
               <span className="h-2.5 w-2.5 rounded-full bg-accent" />

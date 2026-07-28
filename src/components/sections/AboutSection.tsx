@@ -30,15 +30,20 @@ export function AboutSection() {
           title="Desenvolvimento com visão de produto e execução técnica"
         />
 
-        <div>
+        <div data-reveal="right">
           <div className="space-y-5 text-lg leading-8 text-text-secondary">
             <p>{siteConfig.about}</p>
             <p>{siteConfig.aboutFocus}</p>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {principles.map((principle) => (
-              <Card className="p-5" key={principle.title}>
+            {principles.map((principle, index) => (
+              <Card
+                className="p-5"
+                data-reveal
+                data-reveal-delay={index}
+                key={principle.title}
+              >
                 <h3 className="text-base font-semibold text-text-primary">
                   {principle.title}
                 </h3>

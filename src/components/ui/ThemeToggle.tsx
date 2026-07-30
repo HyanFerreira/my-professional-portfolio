@@ -53,7 +53,7 @@ export function ThemeToggle() {
       aria-label={
         theme === "light" ? "Ativar modo escuro" : "Ativar modo claro"
       }
-      className="theme-toggle inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-md border border-border bg-surface text-text-primary transition hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      className="theme-toggle inline-flex h-11 w-11 shrink-0 cursor-pointer items-center justify-center rounded-md border border-border bg-surface text-text-primary transition hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent xl:h-10 xl:w-10"
       onClick={toggleTheme}
       title="Alternar tema"
       type="button"

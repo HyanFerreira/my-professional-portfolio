@@ -2,17 +2,98 @@ import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    slug: "bug-no-anzol-paideia",
+    title: "Bug no Anzol — Paideia",
+    image: "/projects/bugnoanzol/student-dashboard.png",
+    gallery: [
+      {
+        src: "/projects/bugnoanzol/student-dashboard.png",
+        alt: "Dashboard do estudante na plataforma Paideia",
+        caption: "Jornada do estudante com progresso, desafios e ranking",
+      },
+      {
+        src: "/projects/bugnoanzol/achievements.png",
+        alt: "Tela de conquistas da plataforma Paideia",
+        caption: "Conquistas, recompensas e evolução do aprendizado",
+      },
+      {
+        src: "/projects/bugnoanzol/characters.png",
+        alt: "Coleção de personagens da plataforma Paideia",
+        caption: "Personagens colecionáveis que evoluem com o estudante",
+      },
+      {
+        src: "/projects/bugnoanzol/store.png",
+        alt: "Loja de personagens da plataforma Paideia",
+        caption: "Loja gamificada para troca de pontos por personagens",
+      },
+    ],
+    description:
+      "Plataforma educacional gamificada criada no Hackathon 2026 do IFSP Caraguatatuba para unir aprendizagem, engajamento estudantil e acompanhamento pedagógico.",
+    category: "Plataforma educacional",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Laravel",
+      "MySQL",
+      "Laravel Reverb",
+      "Tailwind CSS",
+    ],
+    notice:
+      "Projeto colaborativo desenvolvido pela equipe Bug no Anzol durante o Hackathon 2026 do IFSP Caraguatatuba, uma imersão dedicada a soluções para desafios reais da administração pública municipal.",
+    eventUrl:
+      "https://www.ifspcaraguatatuba.edu.br/noticias/ifsp-caraguatatuba-realiza-lancamento-oficial-do-hackathon-2026",
+    repositories: [
+      {
+        label: "Código front-end",
+        url: "https://github.com/HyanFerreira/hackathon-project-frontend",
+      },
+      {
+        label: "Código back-end",
+        url: "https://github.com/HyanFerreira/hackathon-project-backend",
+      },
+    ],
+    demoUrl: "https://bugnoanzol.hyanferreira.com.br",
+    featured: true,
+    summary:
+      "O Paideia transforma atividades escolares em uma jornada gamificada. Estudantes respondem questões ligadas à BNCC, acumulam pontos e XP, avançam em rankings, desbloqueiam conquistas e evoluem personagens, enquanto professores e gestores acompanham o desempenho e administram a rotina pedagógica.",
+    challenge:
+      "Criar, dentro do tempo concentrado de um hackathon, uma solução capaz de aumentar o engajamento dos estudantes sem perder o valor pedagógico e, ao mesmo tempo, atender às necessidades distintas de alunos, professores, gestores escolares e administradores.",
+    solution:
+      "Desenvolvimento de uma aplicação full stack com frontend em Next.js e API em Laravel, autenticação e permissões por perfil, questões organizadas por habilidades da BNCC, dashboards de desempenho e uma camada de gamificação com pontos, XP, energia, missões, conquistas, rankings, loja e personagens. Sessões de turma e desafios entre estudantes utilizam WebSocket para interação em tempo real.",
+    highlights: [
+      "Experiências específicas para estudante, professor, gestor e administrador",
+      "Banco de questões organizado por disciplinas e habilidades da BNCC",
+      "Pontos, XP, energia, rankings, missões e conquistas",
+      "Desafios entre estudantes e sessões de turma em tempo real",
+      "Loja, coleção e evolução de personagens gamificados",
+      "Gestão de escolas, turmas, professores e estudantes com dashboards",
+    ],
+  },
+  {
     slug: "scrollfolio-template",
     title: "Scrollfolio Template",
+    image: "/projects/scrollfolio/homepage.png",
+    gallery: [
+      {
+        src: "/projects/scrollfolio/homepage.png",
+        alt: "Tela inicial do Scrollfolio Template",
+        caption: "Apresentação inicial e chamada principal",
+      },
+      {
+        src: "/projects/scrollfolio/work.png",
+        alt: "Seção de projetos do Scrollfolio Template",
+        caption: "Projetos apresentados durante a navegação",
+      },
+      {
+        src: "/projects/scrollfolio/contact.png",
+        alt: "Seção de contato do Scrollfolio Template",
+        caption: "Encerramento da experiência e área de contato",
+      },
+    ],
     description:
       "Template moderno de portfólio com navegação fluida, seções reutilizáveis e foco em apresentação profissional de projetos, serviços e informações pessoais.",
     category: "Template de portfólio",
-    technologies: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-    ],
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     demoUrl: "https://scrollfolio.hyanferreira.com.br",
     featured: true,
     summary:
@@ -37,7 +118,7 @@ export const projects: Project[] = [
       "Sistema administrativo para controle de cadastros, fluxos internos e informações operacionais em ambiente educacional.",
     category: "Sistema web",
     technologies: ["Laravel", "Livewire", "PHP", "MySQL", "Tailwind CSS"],
-    featured: true,
+    featured: false,
     summary:
       "Projeto focado em rotinas administrativas, com telas organizadas para consulta, cadastro e acompanhamento de dados.",
     challenge:

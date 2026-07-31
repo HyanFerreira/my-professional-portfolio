@@ -2,6 +2,78 @@ import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    slug: "portal-educacional-aurora",
+    title: "Portal Educacional Aurora",
+    image: "/projects/instituto-aurora/homepage.png",
+    gallery: [
+      {
+        src: "/projects/instituto-aurora/homepage.png",
+        alt: "Página inicial do Portal Educacional Aurora",
+        caption: "Página inicial com destaques e indicadores institucionais",
+      },
+      {
+        src: "/projects/instituto-aurora/featured-news.png",
+        alt: "Área de notícias do Portal Educacional Aurora",
+        caption: "Notícias em destaque e publicações recentes",
+      },
+      {
+        src: "/projects/instituto-aurora/events-calendar.png",
+        alt: "Calendário interativo de eventos do Portal Educacional Aurora",
+        caption: "Próximos eventos organizados em um calendário interativo",
+      },
+      {
+        src: "/projects/instituto-aurora/photo-gallery.png",
+        alt: "Galeria de imagens do Portal Educacional Aurora",
+        caption: "Álbuns com filtros, detalhes e download de imagens",
+      },
+      {
+        src: "/projects/instituto-aurora/schools-map.png",
+        alt: "Mapa interativo de escolas do Portal Educacional Aurora",
+        caption: "Pesquisa de escolas sincronizada com mapa interativo",
+      },
+      {
+        src: "/projects/instituto-aurora/observatory-indicators.png",
+        alt: "Indicadores do Observatório Educacional Aurora",
+        caption: "Observatório com métricas e dados por ano de referência",
+      },
+    ],
+    description:
+      "Portal educacional full stack com área pública e CMS administrativo para notícias, eventos, escolas, documentos, galerias e indicadores.",
+    category: "Portal educacional",
+    technologies: [
+      "Laravel",
+      "Livewire",
+      "PHP",
+      "MySQL",
+      "Tailwind CSS",
+      "Alpine.js",
+    ],
+    notice:
+      "Projeto demonstrativo de portfólio. O Instituto Aurora, seus profissionais, escolas, endereços, documentos e indicadores são fictícios e não possuem vínculo com qualquer instituição real.",
+    repositories: [
+      {
+        label: "Ver código",
+        url: "https://github.com/HyanFerreira/portal-educacional",
+      },
+    ],
+    demoUrl: "https://instituto-aurora.hyanferreira.com.br",
+    featured: true,
+    summary:
+      "Aplicação full stack que reúne comunicação institucional e gestão de conteúdo educacional em uma única plataforma. O portal público apresenta notícias, eventos, iniciativas, escolas, documentos, galerias e indicadores, enquanto o painel administrativo permite que equipes não técnicas mantenham toda a experiência sem editar o código-fonte.",
+    challenge:
+      "Centralizar conteúdos e dados educacionais de naturezas muito diferentes sem tornar a manutenção dependente de desenvolvimento, preservando uma navegação clara para a comunidade e fluxos eficientes e seguros para a equipe administrativa.",
+    solution:
+      "Desenvolvimento de uma aplicação monolítica moderna com Laravel e Livewire, organizada em módulos de domínio. A solução combina CMS baseado em blocos, gestão editorial, permissões por perfil, busca global, processamento de mídia, mapa interativo de escolas e um observatório extensível com indicadores e histórico anual.",
+    highlights: [
+      "Portal público responsivo e painel administrativo completo",
+      "CMS modular com texto rico, mídia, documentos e ordenação",
+      "Observatório configurável com indicadores e histórico anual",
+      "Mapa interativo e cadastro estruturado de escolas",
+      "Galerias com tratamento de imagens e download em ZIP",
+      "Controle de acesso, integrações, cache e testes automatizados",
+    ],
+  },
+  {
     slug: "bug-no-anzol-paideia",
     title: "Bug no Anzol — Paideia",
     image: "/projects/bugnoanzol/student-dashboard.png",

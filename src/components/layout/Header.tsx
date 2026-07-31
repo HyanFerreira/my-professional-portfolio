@@ -139,6 +139,43 @@ export function Header() {
       }
     }
 
+    function handleHashLinkClick(event: MouseEvent) {
+      if (
+        event.button !== 0 ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      const link = (event.target as Element | null)?.closest<HTMLAnchorElement>(
+        "a[href]",
+      );
+
+      if (!link) {
+        return;
+      }
+
+      const url = new URL(link.href, window.location.href);
+
+      if (url.origin !== window.location.origin || url.pathname !== pathname) {
+        return;
+      }
+
+      const targetHref = navigationSections.find(
+        ({ id }) => url.hash === `#${id}`,
+      )?.href;
+
+      if (!targetHref) {
+        return;
+      }
+
+      navigationTargetRef.current = targetHref;
+      setActiveHref(targetHref);
+    }
+
     if (!navigationTargetRef.current) {
       updateActiveSection();
     }
@@ -149,6 +186,7 @@ export function Header() {
     });
     window.addEventListener("wheel", resumeScrollTracking, { passive: true });
     window.addEventListener("keydown", handleNavigationKey);
+    document.addEventListener("click", handleHashLinkClick, true);
 
     return () => {
       cancelAnimationFrame(frameId);
@@ -158,6 +196,7 @@ export function Header() {
       window.removeEventListener("touchstart", resumeScrollTracking);
       window.removeEventListener("wheel", resumeScrollTracking);
       window.removeEventListener("keydown", handleNavigationKey);
+      document.removeEventListener("click", handleHashLinkClick, true);
     };
   }, [pathname]);
 

@@ -40,7 +40,7 @@ export function HeroSection() {
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button href="/projetos" size="lg">
+            <Button href="#projetos" size="lg">
               Ver projetos
             </Button>
             <Button href="/#contato" size="lg" variant="secondary">
